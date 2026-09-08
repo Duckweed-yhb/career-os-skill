@@ -1,7 +1,7 @@
 ---
 name: career-os
 description: "Career growth operating system. Identify target roles, analyze skill gaps, generate industrial-complexity projects, turn projects into learning-by-doing Markdown courses, and build portfolios. Use when users mention career planning, job switch, 转行, skill gap, 技能差距, learning roadmap, 学习路线, project recommendation, 项目推荐, side project, 边做边学, or run commands /CareerOS init, /CareerOS analyze, /CareerOS generate project, /CareerOS generate course."
-version: 0.2.0
+version: 0.3.0
 ---
 
 # CareerOS
@@ -34,6 +34,19 @@ When the user hasn't yet identified a target role, or wants to explore options:
 3. **Define**: Present 1-3 recommended target roles with a "capability radar" showing the key skill categories required.
 4. **Commit**: Help the user pick one target role and lock it in as their "mission."
 
+**Capability radar — standard dimensions:**
+
+Use these six dimensions for every radar (score each 0–10 based on the role's requirements), so outputs stay comparable across sessions:
+
+1. **Language & Frameworks** — core languages and main frameworks
+2. **Data & Storage** — databases, data modeling, cache/queue
+3. **Engineering Practice** — testing, CI/CD, code quality, version control
+4. **Architecture & Design** — system design, patterns, scalability
+5. **Domain Knowledge** — industry/business knowledge specific to the role
+6. **Soft Skills** — collaboration, communication, leadership
+
+Always render the radar on exactly these six axes.
+
 **Output expectations:**
 
 - A clear target role with a one-paragraph description
@@ -45,7 +58,11 @@ When the user hasn't yet identified a target role, or wants to explore options:
 Once a target role is identified, compare the user's current state against the role requirements:
 
 1. **Profile the Role**: Break down the target role into specific skill categories (e.g., Languages, Frameworks, Tools, Concepts, Soft Skills).
-2. **Profile the User**: Assess the user's current proficiency in each skill category (beginner / intermediate / advanced).
+2. **Profile the User**: Assess the user's current proficiency in each skill category (beginner / intermediate / advanced), using these anchors:
+   - **Beginner** — can follow a tutorial but can't build from a blank page; needs step-by-step guidance
+   - **Intermediate** — can build independently with occasional lookups; struggles on debugging or design decisions
+   - **Advanced** — can build, debug, and explain trade-offs; can mentor others
+   Ask one self-assessment question per category rather than guessing from a resume alone.
 3. **Identify Gaps**: Highlight the critical missing links — skills that are most needed and furthest from current proficiency.
 4. **Prioritize**: Rank the gaps by importance and urgency. Not all gaps are equal — focus on the 20% that will deliver 80% of the results.
 
@@ -74,6 +91,16 @@ This is the core engine. Generate real-world, industrial-complexity projects bas
    - Estimated difficulty and time commitment
 
 3. **Generate Multiple Options**: Always provide 2-3 project options at different difficulty levels or focusing on different aspects of the skill gaps.
+
+**Growth path planning (one role → a string of projects):**
+
+Don't hand over isolated projects — lay out a 3-project serial path from the target role:
+
+- **Project 1 — Foundation**: exercises the most fundamental gaps; smaller scope, meant to be finished
+- **Project 2 — Capability**: targets the core gaps the role demands; the centerpiece project
+- **Project 3 — Showcase**: adds the differentiating tech (caching, scalability, advanced topics); the portfolio star
+
+For each project state: which gaps it closes, the expected radar shift, and its difficulty band. Re-plan the path as the user completes milestones.
 
 **Difficulty calibration (Context-Aware in practice):**
 
@@ -115,6 +142,8 @@ Once a project is selected, turn it into a step-by-step learning-by-doing course
 4. **Generate the course folder.** Create a `course/` directory with one Markdown file per lesson plus a course overview. Number lessons `01`, `02`, ... so file order = learning order.
 
 5. **Adapt to base level.** Zero-base users start from environment setup and fundamentals with smaller, more scaffolded lessons. Users with a base skip covered units (label them "review or skip") and start at the first real gap.
+
+6. **Build the schedule.** Turn the user's weekly time budget into a study schedule: weekly hours ÷ 2h per lesson ≈ lessons per week; total lessons ÷ lessons per week ≈ total weeks. Add a schedule table (week → lessons → milestone) to `00-course-overview.md` so the user sees exactly how many weeks the course takes.
 
 **Lesson document template (every lesson is a Markdown file):**
 
@@ -160,7 +189,8 @@ Once a project is selected, turn it into a step-by-step learning-by-doing course
 
 - Tech stack learning route — ordered by dependency, with skip notes per base level
 - Project development route — milestones, each with a runnable deliverable
-- `00-course-overview.md` — contains both routes, the lesson table, and a "start here" instruction
+- `00-course-overview.md` — contains both routes, the lesson table, a study schedule, and a "start here" instruction
+- A study schedule (week → lessons → milestone) derived from the user's weekly time budget
 - One Markdown lesson file per lesson, each with goals, minimal knowledge, hands-on task, and acceptance criteria
 - A clear "start here" pointer so the user can begin immediately
 

@@ -53,14 +53,43 @@ def check_changelog():
         errors.append("[changelog] CHANGELOG.md must contain an [Unreleased] section")
 
 
+def check_version_consistency():
+    """SKILL front-matter version, README badge, and latest CHANGELOG version must match."""
+    skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+    m = re.search(r"^version:\s*([\d.]+)", skill_text, re.MULTILINE)
+    if not m:
+        errors.append("[version] SKILL.md missing `version:` in front matter")
+        return
+    skill_version = m.group(1)
+
+    readme_text = (ROOT / "README.md").read_text(encoding="utf-8")
+    m = re.search(r"badge/version-([\d.]+)-blue", readme_text)
+    if not m:
+        errors.append("[version] README.md missing shields.io version badge")
+        return
+    badge_version = m.group(1)
+
+    changelog_text = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
+    m = re.search(r"^## \[([\d.]+)\]", changelog_text, re.MULTILINE)
+    if not m:
+        errors.append("[version] CHANGELOG.md missing a released version section")
+        return
+    changelog_version = m.group(1)
+
+    versions = {"SKILL": skill_version, "README badge": badge_version, "CHANGELOG": changelog_version}
+    if len(set(versions.values())) != 1:
+        errors.append(f"[version] version mismatch: {versions}")
+
+
 def main():
     check_skill_frontmatter()
     check_relative_links()
     check_changelog()
+    check_version_consistency()
     if errors:
         print("\n".join(errors))
         sys.exit(1)
-    print(f"OK: verified {ROOT} — front matter, links, changelog all valid.")
+    print(f"OK: verified {ROOT} — front matter, links, changelog, version consistency all valid.")
 
 
 if __name__ == "__main__":
