@@ -5,7 +5,7 @@
 > An operating system for your career growth.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](CHANGELOG.md)
 [![Last Commit](https://img.shields.io/github/last-commit/Duckweed-yhb/career-os-skill)](https://github.com/Duckweed-yhb/career-os-skill)
 
 **[English](README.md) | [简体中文](README.zh-CN.md)**
@@ -68,7 +68,11 @@ Just like an operating system manages hardware resources, CareerOS manages your 
 - **No toy projects.** Generate real-world project ideas with industrial-level complexity.
 - Includes tech stack recommendations, difficulty predictions, and acceptance criteria.
 
-### 4. Portfolio Builder
+### 4. Course Builder
+- Turn any chosen project into a step-by-step **learning-by-doing** course.
+- Generates the tech-stack learning route and the project development route, then splits the project into Markdown lessons — each with hands-on tasks and acceptance criteria.
+
+### 5. Portfolio Builder
 - Turn your projects into interview highlights.
 - Resume bullet optimization and GitHub README writing guidance included.
 
@@ -80,9 +84,10 @@ Load the `CareerOS` Skill in your AI assistant, then try:
 /CareerOS init
 /CareerOS analyze [your resume or current skill list]
 /CareerOS generate project --focus=[specific tech, e.g. Redis/microservices]
+/CareerOS generate course [project]  # turn a chosen project into learning-by-doing lessons
 ```
 
-For a complete walkthrough, see [examples/frontend-to-fullstack.md](examples/frontend-to-fullstack.md).
+For a complete walkthrough, see [examples/frontend-to-fullstack.md](examples/frontend-to-fullstack.md). Have questions? See the [FAQ](FAQ.md).
 
 ## Why CareerOS?
 

@@ -5,7 +5,7 @@
 > 一套为你的职业成长而设计的操作系统。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](CHANGELOG.md)
 [![Last Commit](https://img.shields.io/github/last-commit/Duckweed-yhb/career-os-skill)](https://github.com/Duckweed-yhb/career-os-skill)
 
 **[English](README.md) | [简体中文](README.zh-CN.md)**
@@ -68,7 +68,11 @@
 - **拒绝玩具项目。** 根据缺失的技能点，生成具有工业级复杂度的实战项目构思。
 - 包含技术栈建议、难点预测和验收标准。
 
-### 4. 作品集构建
+### 4. 课程生成器
+- 把选定项目变成一步步**边做边学**的课程。
+- 生成技术栈学习路线与项目开发路线，再把整个项目拆成一节节 Markdown 课程——每节都带动手任务和验收标准。
+
+### 5. 作品集构建
 - 将项目转化为面试中的亮点。
 - 提供简历描述优化建议和 GitHub README 撰写指南。
 
@@ -80,9 +84,10 @@
 /CareerOS init
 /CareerOS analyze [你的简历内容或当前技能列表]
 /CareerOS generate project --focus=[具体技术点，如 Redis/微服务]
+/CareerOS generate course [项目]  # 把选定项目拆成边做边学的课程
 ```
 
-完整流程示例见 [examples/frontend-to-fullstack.md](examples/frontend-to-fullstack.md)。
+完整流程示例见 [examples/frontend-to-fullstack.md](examples/frontend-to-fullstack.md)。有问题？看 [FAQ](FAQ.md)。
 
 ## 为什么选择 CareerOS？
 
