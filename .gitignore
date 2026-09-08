@@ -1,0 +1,49 @@
+# --- Dependencies ---
+node_modules/
+vendor/
+__pycache__/
+*.py[cod]
+
+# --- Local configuration ---
+.env
+.env.*
+!.env.example
+*.local
+
+# --- Editor / IDE ---
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Logs / temp ---
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+
+# --- Build / dist ---
+dist/
+build/
+out/
+*.zip
+*.tar.gz
+
+# --- Test / coverage ---
+coverage/
+.coverage
+.pytest_cache/
+
+# --- Misc ---
+.cache/
+.history/
